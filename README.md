@@ -6,12 +6,12 @@ by working with the tutorials provided by [Getting started Guide](https://argopr
 After some local experience, we plan to setup the argo-suite to our [baloise.dev incubator-cluster](/argo-setup-incubator/README.md).
 
 Then, we focus on two use-cases we expect to fit with argo ecosystem:
-* Implementng batch with argo-workflow
+* Implementing batch with argo-workflow
 * Implementing cloud native CI/CD automation with argo-events, argo-rollout etc.
 
 ## batch-workflows
 
-How can argo-workflow can be used to support batch-processing, triggered via arbitrary systems.
+How argo-workflow can be used to support batch-processing, triggered via arbitrary systems.
 [See Detailed documentation](/batch-workflows/README.md)
 
 ## image-build
