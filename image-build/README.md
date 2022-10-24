@@ -39,6 +39,12 @@ kubectl patch deployment \
 
 ```
 
+
+```
+k -n argo apply -f examples/ClusterWorkflowTemplate-image-build.yaml
+k -n argo create -f examples/Workflow-busybox.yaml
+
+```
 https://argoproj.github.io/argo-workflows/
 
 
