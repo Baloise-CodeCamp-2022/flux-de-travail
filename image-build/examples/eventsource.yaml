@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: EventSource
+metadata:
+  name: github
+spec:
+  service:
+    ports:
+      - name: busybox
+        port: 13000
+        targetPort: 13000
+  github:
+    busybox:
+      owner: "Baloise-CodeCamp-2022"
+      repository: "flux-de-travail"
+      webhook:
+        endpoint: "/push"
+        port: "13000"
+        method: "POST"
+      events:
+        - "*"
+      webhookSecret:
+        name: github-access
+        key: secret.yaml
+      insecure: true
+      active: true
+      contentType: "json"

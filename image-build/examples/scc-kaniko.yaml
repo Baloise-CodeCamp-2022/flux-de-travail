@@ -26,8 +26,7 @@ seLinuxContext:
 supplementalGroups:
   type: RunAsAny
 users:
-  - system:serviceaccount:argo-workflows:kaniko
-  - system:serviceaccount:argo-workflows:default
+  - system:serviceaccount:flux02:kaniko
 volumes:
 - configMap
 - downwardAPI
