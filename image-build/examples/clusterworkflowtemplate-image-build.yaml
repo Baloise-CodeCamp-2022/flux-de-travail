@@ -3,6 +3,9 @@ kind: ClusterWorkflowTemplate
 metadata:
   name: container-image
 spec:
+  securityContext:
+    runAsUser: 0
+  serviceAccountName: kaniko
   templates:
   - name: build-kaniko-git
     inputs:
@@ -12,6 +15,8 @@ spec:
       - name: container_tag
       - name: dockerfile
     container:
+      securityContext:
+        runAsUser: 0
       image: gcr.io/kaniko-project/executor:debug
       command: [/kaniko/executor]
       args:

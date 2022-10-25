@@ -41,8 +41,14 @@ kubectl patch deployment \
 
 
 ```
-k -n argo apply -f examples/ClusterWorkflowTemplate-image-build.yaml
-k -n argo create -f examples/Workflow-busybox.yaml
+k -n argo create -f examples/clusterworkflowtemplate-image-build.yaml
+k -n argo create -f examples/workflow-busybox.yaml
+
+k -n argo create -f examples/sa-kaniko.yaml
+k -n argo create -f examples/scc-kaniko.yaml
+
+k -n argo create -f examples/role-kaniko.yaml
+k -n argo create -f examples/rolebinding-kaniko.yaml
 
 ```
 https://argoproj.github.io/argo-workflows/
