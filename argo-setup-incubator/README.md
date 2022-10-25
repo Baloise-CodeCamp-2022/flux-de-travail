@@ -1,6 +1,6 @@
 # Incubator cluster setup
 
-_Desctiption about how, why etc. we made the setup of Argo-Workflows, -Events, -Rollout in our incubator-cluster._
+_Description about how, why etc. we made the setup of Argo-Workflows, -Events, -Rollout in our incubator-cluster._
 
 ## Deployment
 
