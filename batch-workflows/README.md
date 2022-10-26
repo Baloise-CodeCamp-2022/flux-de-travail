@@ -60,13 +60,15 @@ STEP                      TEMPLATE           PODNAME                            
 ## Artifact Mounting
 [Workflow-Template](https://github.com/baloise-incubator/code-camp-apps/blob/master/flux01/templates/wft-artifact-mounting.yaml)
 
-Example how to submit a new workflow-run based on a preinstalled workflow-template, passing a parameter and using a preconfigured pvc for file-share purposes. The pvc is accessible via WebDAV Protocol (hflux01webdav.apps.okd.baloise.dev):
+Example how to submit a new workflow-run based on a preinstalled workflow-template, passing a parameter and using a preconfigured pvc for file-share purposes. The pvc is accessible via WebDAV Protocol ([see GitOps Spec](https://github.dev/baloise-incubator/code-camp-apps)):
 ```bash
-
+# put inputfile to webdav folder:
 $ curl -u <user>:<pw> -T <file> 'https://flux01webdav.apps.okd.baloise.dev'
 
+# submit workflow
 $ argo submit -n flux01 --from workflowtemplate/wft-artifact-mounting -p message=CodeCamp --watch --log | tee response.txt
 
+# dump argo-cli output
 $  cat response.txt
 Name:                wft-artifact-mounting-tlnkn
 Namespace:           flux01
