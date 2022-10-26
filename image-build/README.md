@@ -71,10 +71,10 @@ References:
 * generate secret and provide it to argo-events
 
 ```
-k -n argo create -f examples/route-event-github.yml
-k -n argo create -f examples/eventsource.yaml
-k -n flux02 create -f examples/sensor-rbac.yaml
+k -n flux02 create -f examples/route-event-github.yml
+k -n flux02 create -f examples/eventsource.yaml
 k -n flux02 create -f examples/sensor-webhook.yaml
+k -n flux02 create -f examples/sensor-rbac.yaml
 ```
 
 References:

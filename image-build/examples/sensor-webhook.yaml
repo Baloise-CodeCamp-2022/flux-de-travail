@@ -19,9 +19,7 @@ spec:
               apiVersion: argoproj.io/v1alpha1
               kind: Workflow
               metadata:
-                generateName: busybox-
-                labels:
-                  workflows.argoproj.io/archive-strategy: "false"
+                generateName: busybox-  
               spec:
                 serviceAccountName: kaniko
                 entrypoint: build
@@ -51,8 +49,3 @@ spec:
                           value: registry.baloise.dev/argo-workflows/busybox
                         - name: container_tag
                           value: "1.0.0"
-          parameters:
-            - src:
-                dependencyName: busybox
-                dataKey: body
-              dest: spec.arguments.parameters.0.value
