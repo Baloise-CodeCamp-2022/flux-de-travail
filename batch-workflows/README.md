@@ -1,4 +1,4 @@
-# Batch Usecases für Argo-Workflow
+# Batch Usecases for Argo-Workflow
 
 We decided to deploy argo-workflow-controller central in it's own namespace and to publish project/team-specific workflow-templates in it's decentral managed namespaces.
 
