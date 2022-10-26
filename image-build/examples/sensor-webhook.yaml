@@ -9,6 +9,16 @@ spec:
     - name: busybox
       eventSourceName: github
       eventName: busybox
+      filters:
+        data:
+          - path: header.X-Github-Event
+            type: string
+            value:
+              - push
+          - path: body.action
+            type: string
+            value:
+              - repository
   triggers:
     - template:
         name: webhook-workflow-trigger
@@ -49,3 +59,8 @@ spec:
                           value: registry.baloise.dev/argo-workflows/busybox
                         - name: container_tag
                           value: "1.0.0"
+          parameters:
+            - src:
+                dependencyName: busybox
+                dataKey: body.push.repository
+              dest: spec.arguments.parameters.0.value
