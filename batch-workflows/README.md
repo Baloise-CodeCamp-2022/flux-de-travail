@@ -62,6 +62,9 @@ STEP                      TEMPLATE           PODNAME                            
 
 For simplicity, we do not implement the proposed s3 artifact mechanism. Instead, we connect a pvc to share file-content.
 This example shows how to submit a new workflow-run based on a preinstalled workflow-template, passing a parameter and using a preconfigured pvc for file-share purposes. The pvc is accessible via WebDAV Protocol ([see GitOps Spec](https://github.dev/baloise-incubator/code-camp-apps)):
+
+![](/assets/workflow.png)
+
 ```bash
 # put inputfile to webdav folder:
 $ curl -u <user>:<pw> -T <file> 'https://flux01webdav.apps.okd.baloise.dev'
