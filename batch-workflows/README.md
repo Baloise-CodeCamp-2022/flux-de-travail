@@ -1,5 +1,9 @@
 # Batch Usecases für Argo-Workflow
 
+We decided to deploy argo-workflow-controller central in it's own namespace and to publish project/team-specific workflow-templates in it's decentral managed namespaces.
+
+To be able to run workflows in decentral namespaces like our `flux*`-namespaces, we grant the argo-workflow-controller with [this argo-cluster-rolebinding template](https://github.com/baloise-incubator/code-camp-apps/blob/master/flux01/templates/argo-cluster-rolebinding.yaml).
+
 GitOps Repos
 * [Flux01: Namespace to publish Workflow templates](https://github.com/baloise-incubator/code-camp-apps/tree/master/flux01)
 
