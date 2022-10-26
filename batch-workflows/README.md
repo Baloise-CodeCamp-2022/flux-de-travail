@@ -1,6 +1,6 @@
 # Batch Usecases for Argo-Workflow
 
-After some tweaks on our local machines with the [well documented getting-started tutorials](https://argoproj.github.io/argo-workflows/walk-through/), we try to setup argo-workflow in our incubator-cluster.
+After some tweaks on our local machines with the [well documented getting-started tutorials](https://argoproj.github.io/argo-workflows/walk-through/), we try to setup argo-workflow in our incubator-cluster (see [/argo-setup-incubator/README.md](/argo-setup-incubator/README.md)).
 
 We decided to deploy argo-workflow-controller central in it's own namespace and to publish project/team-specific workflow-templates in it's decentral managed namespaces.
 
