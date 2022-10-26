@@ -1,5 +1,7 @@
 # Batch Usecases for Argo-Workflow
 
+After some tweaks on our local machines with the [well documented getting-started tutorials](https://argoproj.github.io/argo-workflows/walk-through/), we try to setup argo-workflow in our incubator-cluster.
+
 We decided to deploy argo-workflow-controller central in it's own namespace and to publish project/team-specific workflow-templates in it's decentral managed namespaces.
 
 To be able to run workflows in decentral namespaces like our `flux*`-namespaces, we grant the argo-workflow-controller with [this argo-cluster-rolebinding template](https://github.com/baloise-incubator/code-camp-apps/blob/master/flux01/templates/argo-cluster-rolebinding.yaml).
@@ -10,6 +12,8 @@ GitOps Repos
 ## Workflows
 
 ### Hello World
+[getting-started tutorial](https://argoproj.github.io/argo-workflows/walk-through/hello-world/)
+
 [Workflow-Template](https://github.com/baloise-incubator/code-camp-apps/blob/master/flux01/templates/wft-hello-world.yaml)
 
 Example how to submit a new workflow-run based on a preinstalled workflow-template, passing a parameter:
@@ -62,6 +66,8 @@ STEP                      TEMPLATE           PODNAME                            
 ```
 
 ## Artifact sharing by volume mounting 
+[getting-started tutorial](https://argoproj.github.io/argo-workflows/walk-through/volumes/)
+
 [Workflow-Template](https://github.com/baloise-incubator/code-camp-apps/blob/master/flux01/templates/wft-artifact-mounting.yaml)
 
 For simplicity, we do not implement the proposed s3 artifact mechanism. Instead, we connect a pvc to share file-content.
