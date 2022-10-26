@@ -11,6 +11,10 @@ GitOps Repos
 
 ## Workflows
 
+### Conceptual view
+
+![](/assets/batch-deploy-submit.drawio.svg)
+
 ### Hello World
 [getting-started tutorial](https://argoproj.github.io/argo-workflows/walk-through/hello-world/)
 
