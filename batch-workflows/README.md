@@ -6,7 +6,7 @@ GitOps Repos
 ## Workflows
 
 ### Hello World
-[Hello World](https://github.com/baloise-incubator/code-camp-apps/blob/master/flux01/templates/wft-hello-world.yaml)
+[Workflow-Template](https://github.com/baloise-incubator/code-camp-apps/blob/master/flux01/templates/wft-hello-world.yaml)
 
 Example how to submit a new workflow-run based on a preinstalled workflow-template, passing a parameter:
 ```bash
