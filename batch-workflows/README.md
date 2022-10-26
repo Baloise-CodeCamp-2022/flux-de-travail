@@ -57,10 +57,11 @@ STEP                      TEMPLATE           PODNAME                            
 
 ```
 
-## Artifact Mounting
+## Artifact sharing by volume mounting 
 [Workflow-Template](https://github.com/baloise-incubator/code-camp-apps/blob/master/flux01/templates/wft-artifact-mounting.yaml)
 
-Example how to submit a new workflow-run based on a preinstalled workflow-template, passing a parameter and using a preconfigured pvc for file-share purposes. The pvc is accessible via WebDAV Protocol ([see GitOps Spec](https://github.dev/baloise-incubator/code-camp-apps)):
+For simplicity, we do not implement the proposed s3 artifact mechanism. Instead, we connect a pvc to share file-content.
+This example shows how to submit a new workflow-run based on a preinstalled workflow-template, passing a parameter and using a preconfigured pvc for file-share purposes. The pvc is accessible via WebDAV Protocol ([see GitOps Spec](https://github.dev/baloise-incubator/code-camp-apps)):
 ```bash
 # put inputfile to webdav folder:
 $ curl -u <user>:<pw> -T <file> 'https://flux01webdav.apps.okd.baloise.dev'
