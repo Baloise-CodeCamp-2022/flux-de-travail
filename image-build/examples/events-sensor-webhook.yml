@@ -9,12 +9,6 @@ spec:
     - name: busybox
       eventSourceName: github
       eventName: busybox
-      filters:
-        data:
-          - path: header.X-Github-Event
-            type: string
-            value:
-              - push
   triggers:
     - template:
         name: webhook-workflow-trigger
@@ -58,5 +52,5 @@ spec:
           parameters:
             - src:
                 dependencyName: busybox
-                dataKey: body.push.repository
-              dest: spec.arguments.parameters.0.value
+                dataKey: body.star.repository
+              dest: spec.templates.0.dag.tasks.0.arguments.parameters.0.value

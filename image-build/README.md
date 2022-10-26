@@ -1,12 +1,15 @@
 ## Intro
 
 * github (webhook)
-* argo events (event-source, sensor)
-* argo workflow (share state?)
-* image build kaniko
-* argo rollouts?
+* argo events
+  * github event-source
+  * sensor creates workflow
+* argo workflows
+  * image build workflow
+    * image build with kaniko
+  * generic clusterworkflow template
 
-### Minikube
+### Minikube install
 
 ```
 minikube start
@@ -39,21 +42,20 @@ kubectl patch deployment \
 
 ```
 
-Create docker secrets .dockerconfigjson with credentials to push to private registry
-
-
 ### Deploy image builder
 #### Argo workflows part
 
+* Create docker secrets .dockerconfigjson with credentials to push to private registry
+
 ```
-k create -f examples/clusterworkflowtemplate-image-build.yaml
-k -n flux02 create -f examples/workflow-busybox.yaml
+k create -f examples/workflows-clusterworkflowtemplate-image-build.yml
+k -n flux02 create -f examples/workflows-busybox.yml
 
-k -n flux02 create -f examples/sa-kaniko.yaml
-k create -f examples/scc-kaniko.yaml
+k -n flux02 create -f examples/workflows-sa-kaniko.yml
+k create -f examples/workflows-scc-kaniko.yml
 
-k -n flux02 create -f examples/role-kaniko.yaml
-k -n flux02 create -f examples/rolebinding-kaniko.yaml
+k -n flux02 create -f examples/workflows-role-kaniko.yml
+k -n flux02 create -f examples/workflows-rolebinding-kaniko.yml
 
 ```
 https://argoproj.github.io/argo-workflows/
@@ -64,17 +66,18 @@ References:
 * https://gist.github.com/vfarcic/28e2adb5946ca366d7845780608591d7
 * https://github.com/vfarcic/argo-workflows-demo/blob/master/workflows/cd-mock.yaml
 
-#### Argo Events parts
+#### Argo Events part
 
 * Create webhook in github
 * Deploy argo-events and eventbus
 * generate secret and provide it to argo-events
 
 ```
-k -n flux02 create -f examples/route-event-github.yml
-k -n flux02 create -f examples/eventsource.yaml
-k -n flux02 create -f examples/sensor-webhook.yaml
-k -n flux02 create -f examples/sensor-rbac.yaml
+k -n flux02 create -f examples/events-sensor-rbac.yaml
+k -n flux02 create -f examples/events-route-event-github.yml
+
+k -n flux02 create -f examples/events-eventsource.yml
+k -n flux02 create -f examples/events-sensor-webhook.yml
 ```
 
 References:
