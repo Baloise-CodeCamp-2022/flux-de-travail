@@ -17,7 +17,7 @@ spec:
         port: "13000"
         method: "POST"
       events:
-        - "star"
+        - "push"
       webhookSecret:
         name: github-access
         key: secret.yaml

@@ -2,11 +2,9 @@ apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
   generateName: busybox-
-  labels:
-    workflows.argoproj.io/archive-strategy: "false"
 spec:
-  serviceAccountName: kaniko
   entrypoint: build
+  serviceAccountName: kaniko
   volumes:
   - name: kaniko-secret
     secret:
@@ -28,7 +26,7 @@ spec:
           - name: repo
             value: git://github.com/Baloise-CodeCamp-2022/flux-de-travail
           - name: dockerfile
-            value: https://raw.githubusercontent.com/Baloise-CodeCamp-2022/flux-de-travail/main/image-build/Dockerfile
+            value: image-build/Dockerfile
           - name: container_image
             value: registry.baloise.dev/argo-workflows/busybox
           - name: container_tag

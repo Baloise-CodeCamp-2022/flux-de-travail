@@ -5,7 +5,6 @@ metadata:
 spec:
   securityContext:
     runAsUser: 0
-  serviceAccountName: kaniko
   templates:
   - name: build-kaniko-git
     inputs:
@@ -26,4 +25,3 @@ spec:
       volumeMounts:
         - name: kaniko-secret
           mountPath: /kaniko/.docker/
-  
