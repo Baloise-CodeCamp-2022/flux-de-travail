@@ -24,7 +24,7 @@ Example how to submit a new workflow-run based on a preinstalled workflow-templa
 ```bash
 $ argo submit -n flux01 --from workflowtemplate/wft-hello-world -p message=CodeCamp --watch --log | tee response.txt
 
-$  cat response.txt                                                    
+$ cat response.txt   
 Name:                wft-hello-world-p76j7
 Namespace:           flux01
 ServiceAccount:      unset
@@ -67,6 +67,53 @@ Parameters:
 STEP                      TEMPLATE           PODNAME                                             DURATION  MESSAGE
  ✔ wft-hello-world-p76j7  whalesay-template  wft-hello-world-p76j7-whalesay-template-1836767436  8s          
 
+```
+
+### Handling exit status
+[getting-started tutorial](https://argoproj.github.io/argo-workflows/walk-through/exit-handlers/)
+
+[Workflow-Template](https://github.com/baloise-incubator/code-camp-apps/blob/master/flux01/templates/wft-boohoo.yaml)
+
+Example how to react on exit status e.g. to send an email for error handling:
+```bash
+$ argo submit -n flux01 --from workflowtemplate/exit-handlers --watch --log | tee response.txt
+
+$ cat response.txt
+Name:                exit-handlers-l9g4x
+Namespace:           flux01
+ServiceAccount:      default
+Status:              Pending
+Created:             Thu Oct 27 12:02:48 +0200 (now)
+Progress:
+exit-handlers-l9g4x: intentional failure
+exit-handlers-l9g4x: time="2022-10-27T10:02:54.634Z" level=info msg="sub-process exited" argo=true error="<nil>"
+exit-handlers-l9g4x: Error: exit status 1
+exit-handlers-l9g4x-cry-245919737: boohoo!
+exit-handlers-l9g4x-send-email-1914224258: send e-mail: exit-handlers-l9g4x Failed 10.861889. Failed steps [{"displayName":"exit-handlers-l9g4x","message":"Error (exit code 1)","templateName":"intentional-fail","phase":"Failed","podName":"exit-handlers-l9g4x","finishedAt":"2022-10-27T10:02:54Z"}]
+exit-handlers-l9g4x-cry-245919737: time="2022-10-27T10:03:04.692Z" level=info msg="sub-process exited" argo=true error="<nil>"
+exit-handlers-l9g4x-send-email-1914224258: time="2022-10-27T10:03:04.725Z" level=info msg="sub-process exited" argo=true error="<nil>"
+Name:                exit-handlers-l9g4x
+Namespace:           flux01
+ServiceAccount:      default
+Status:              Failed
+Message:             Error (exit code 1)
+Conditions:
+ PodRunning          False
+ Completed           True
+Created:             Thu Oct 27 12:02:48 +0200 (21 seconds ago)
+Started:             Thu Oct 27 12:02:48 +0200 (21 seconds ago)
+Finished:            Thu Oct 27 12:03:08 +0200 (1 second ago)
+Duration:            20 seconds
+Progress:            2/3
+ResourcesDuration:   12s*(1 cpu),12s*(100Mi memory)
+
+STEP                           TEMPLATE          PODNAME                         DURATION  MESSAGE
+ ✖ exit-handlers-l9g4x         intentional-fail  exit-handlers-l9g4x             6s        Error (exit code 1)
+
+ ✔ exit-handlers-l9g4x.onExit  exit-handlee
+ └─┬─○ celebrate               celebrate                                                   when 'Failed == Succeeded' evaluated false
+   ├─✔ cry                     cry               exit-handlers-l9g4x-245919737   6s
+   └─✔ notify                  send-email        exit-handlers-l9g4x-1914224258  6s
 ```
 
 ## Artifact sharing by volume mounting 
