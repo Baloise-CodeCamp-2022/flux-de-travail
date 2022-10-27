@@ -3,7 +3,7 @@
 We try to learn [Argo Workflow](https://argoproj.github.io/argo-workflows/)
 by working with the tutorials provided by [Getting started Guide](https://argoproj.github.io/argo-workflows/quick-start/).
 
-![kickoff-flipchar](/assets/kickoff-flipchart.jpg)
+![kickoff-flipchart](/assets/kickoff-flipchart.jpg)
 
 After some local experience, we plan to setup the argo-suite to our [baloise.dev incubator-cluster](/argo-setup-incubator/README.md).
 
