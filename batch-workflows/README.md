@@ -110,7 +110,7 @@ ResourcesDuration:   12s*(1 cpu),12s*(100Mi memory)
 STEP                           TEMPLATE          PODNAME                         DURATION  MESSAGE
  ✖ exit-handlers-l9g4x         intentional-fail  exit-handlers-l9g4x             6s        Error (exit code 1)
 
- ✔ exit-handlers-l9g4x.onExit  exit-handlee
+ ✔ exit-handlers-l9g4x.onExit  exit-handlers
  └─┬─○ celebrate               celebrate                                                   when 'Failed == Succeeded' evaluated false
    ├─✔ cry                     cry               exit-handlers-l9g4x-245919737   6s
    └─✔ notify                  send-email        exit-handlers-l9g4x-1914224258  6s
@@ -194,3 +194,16 @@ STEP                            TEMPLATE           PODNAME                      
  ├───✔ generate-artifact        whalesay           wft-artifact-mounting-tlnkn-whalesay-30922292        15s         
  └───✔ consume-artifact         print-message      wft-artifact-mounting-tlnkn-print-message-877254023  9s   
 ```
+
+## Streamworks integration
+A streamworks integration is based on the argo cli command using a dedicated namespace holding a service account (sa) to allow the creation of workflows.
+Procedure:
+- precondition: streamworks sa token is stored secretly
+- stream starts
+  - streamworks sa gets the batch namespace sa token where the workflow will be created later on
+  - streamworks context is removed
+  - context with the batch namespace sa is build and passed as kubectl config file location
+  - stream calls argo cli with the batch namespace context - as indicated by the kubectl config - to create a workflow
+    - argo cli is called directly from the stream
+    - argo cli is called indirectly from a custom script provided by a customer hence the batch namespace restriction
+  - batch namespace context is removed
