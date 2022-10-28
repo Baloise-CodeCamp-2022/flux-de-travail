@@ -25,7 +25,7 @@ Create flux02 namespace
 kubectl create ns flux02
 ```
 
-> Image Build will runAsUser 0. Creation of SCC on OpenShift necessary
+> Image Build will runAsUser 0. Creation of [security context constraints](https://docs.openshift.com/container-platform/4.11/authentication/managing-security-context-constraints.html) on OpenShift necessary
 
 ```bash
 kubectl create -f examples/workflows-scc-kaniko.yml
