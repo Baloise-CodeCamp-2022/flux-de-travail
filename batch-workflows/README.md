@@ -197,6 +197,9 @@ STEP                            TEMPLATE           PODNAME                      
 
 ## Streamworks integration
 A streamworks integration is based on the argo cli command using a dedicated namespace holding a service account (sa) to allow the creation of workflows.
+
+![batch-streamworks-conception](/assets/batch-streamworks-conception.drawio.svg)
+
 Procedure:
 - precondition: streamworks sa token is stored secretly
 - stream starts
