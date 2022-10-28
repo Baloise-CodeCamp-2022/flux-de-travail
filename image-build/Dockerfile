@@ -1,2 +1,2 @@
 FROM busybox
-RUN echo "test"
+RUN echo "CodeCamp #1"
