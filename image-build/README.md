@@ -129,6 +129,69 @@ Create Argo [Sensor](https://argoproj.github.io/argo-events/concepts/sensor/), w
 kubectl -n flux02 create -f examples/events-sensor-webhook.yml
 ```
 
+Push to Github and check creation of Workflow
+
+```bash
+argo -n flux02 get @latest
+```
+
+```bash
+Name:                busybox-nzv5b
+Namespace:           flux02
+ServiceAccount:      kaniko
+Status:              Succeeded
+Conditions:
+ PodRunning          False
+ Completed           True
+Created:             Fri Oct 28 11:16:25 +0200 (34 seconds ago)
+Started:             Fri Oct 28 11:16:25 +0200 (34 seconds ago)
+Finished:            Fri Oct 28 11:16:45 +0200 (14 seconds ago)
+Duration:            20 seconds
+Progress:            1/1
+ResourcesDuration:   9s*(1 cpu),9s*(100Mi memory)
+
+STEP              TEMPLATE                          PODNAME                                                    DURATION  MESSAGE
+ ✔ busybox-nzv5b  build
+ └─✔ build        container-image/build-kaniko-git  busybox-nzv5b-container-image/build-kaniko-git-2872416784  8s
+```
+
+Get logs and check image in registry
+
+```bash
+argo -n flux02 logs @latest
+```
+
+```log
+busybox-nzv5b-build-kaniko-git-1487577275: Enumerating objects: 218, done.
+Counting objects: 100% (218/218), done. objects:  64% (140/218)0% (1/218)
+Compressing objects: 100% (175/175), done. objects:  33% (58/175) 0% (1/175)
+busybox-nzv5b-build-kaniko-git-1487577275: Total 218 (delta 91), reused 83 (delta 29), pack-reused 0
+busybox-nzv5b-build-kaniko-git-1487577275: INFO[0000] Retrieving image manifest busybox
+busybox-nzv5b-build-kaniko-git-1487577275: INFO[0000] Retrieving image busybox from registry index.docker.io
+busybox-nzv5b-build-kaniko-git-1487577275: INFO[0002] Built cross stage deps: map[]
+busybox-nzv5b-build-kaniko-git-1487577275: INFO[0002] Retrieving image manifest busybox
+busybox-nzv5b-build-kaniko-git-1487577275: INFO[0002] Returning cached image manifest
+busybox-nzv5b-build-kaniko-git-1487577275: INFO[0002] Executing 0 build triggers
+busybox-nzv5b-build-kaniko-git-1487577275: INFO[0002] Building stage 'busybox' [idx: '0', base-idx: '-1']
+busybox-nzv5b-build-kaniko-git-1487577275: INFO[0002] Unpacking rootfs as cmd RUN echo "test" requires it.
+busybox-nzv5b-build-kaniko-git-1487577275: INFO[0002] Taking snapshot of full filesystem...
+busybox-nzv5b-build-kaniko-git-1487577275: INFO[0002] Initializing snapshotter ...
+busybox-nzv5b-build-kaniko-git-1487577275: INFO[0002] RUN echo "test"
+busybox-nzv5b-build-kaniko-git-1487577275: INFO[0002] Cmd: /bin/sh
+busybox-nzv5b-build-kaniko-git-1487577275: INFO[0002] Args: [-c echo "test"]
+busybox-nzv5b-build-kaniko-git-1487577275: INFO[0002] Running: [/bin/sh -c echo "test"]
+busybox-nzv5b-build-kaniko-git-1487577275: test
+busybox-nzv5b-build-kaniko-git-1487577275: INFO[0002] Taking snapshot of full filesystem...
+busybox-nzv5b-build-kaniko-git-1487577275: INFO[0002] No files were changed, appending empty layer to config. No layer added to image.
+busybox-nzv5b-build-kaniko-git-1487577275: INFO[0002] Pushing image to registry.baloise.dev/argo-workflows/busybox:1.0.0
+busybox-nzv5b-build-kaniko-git-1487577275: INFO[0003] Pushed registry.baloise.dev/argo-workflows/busybox@sha256:7105a4d94e8ba06f8b737dda4e9d59de1865af0580650b3171e556c2ac0b5ec5
+busybox-nzv5b-build-kaniko-git-1487577275: time="2022-10-28T09:16:33.078Z" level=info msg="sub-process exited" argo=true error="<nil>"
+```
+
+Verify image in registry
+
+![image](../assets/registry.png)
+
 References:
 
 * <https://argoproj.github.io/argo-events/sensors/triggers/argo-workflow/>
