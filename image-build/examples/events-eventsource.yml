@@ -21,6 +21,5 @@ spec:
       webhookSecret:
         name: github-access
         key: secret.yaml
-      insecure: true
       active: true
       contentType: "json"
